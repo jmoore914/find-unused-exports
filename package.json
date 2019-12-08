@@ -1,0 +1,72 @@
+{
+	"name": "find-unused-exports",
+	"displayName": "Find Unused Exports",
+	"description": "Find exports not used elsewhere in the workspace",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.40.0"
+	},
+	"enableProposedApi": true,
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"workspaceContains:**/package.json"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.findUnusedExports",
+				"title": "Find Unused Exports"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.findUnusedExports",
+				"key": "ctrl+alt+u"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Source/Test Toggle",
+			"properties": {
+				"findUnusedExports.exclude": {
+					"type": "array",
+					"default": [
+						"node_modules",
+						".git",
+						".vscode",
+						"dist"
+					]
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.40.0",
+		"glob": "^7.1.5",
+		"jest": "^24.9.0",
+		"mocha": "^6.2.2",
+		"tslint": "^5.20.0",
+		"typescript": "^3.6.4",
+		"vscode-test": "^1.2.2"
+	},
+	"dependencies": {
+		"@typescript-eslint/eslint-plugin": "^2.10.0",
+		"@typescript-eslint/parser": "^2.10.0",
+		"@typescript-eslint/typescript-estree": "^2.9.0",
+		"babel-eslint": "^10.0.3",
+		"eslint": "^6.7.2"
+	}
+}
